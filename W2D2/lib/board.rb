@@ -32,12 +32,12 @@ class Board
   def make_move(start_pos, current_player_name)
     @current_player_name = current_player_name
     self.render
+    idx = start_pos+1
     if valid_move?(start_pos)
       stones = @cups[start_pos].length
       @cups[start_pos] = Array.new
       #puts "startpos is now #{cups[start_pos]}"
       #puts "adding #{stones} stones to board"
-      idx = start_pos+1
       while stones > 0
         #puts "#{stones} stones left to add"
         #puts "checking #{idx}"
@@ -69,15 +69,25 @@ class Board
         end
       end
     end
+    if @current_player_name == @player2.name && idx == 14
+      return :prompt
+    elsif @current_player_name == @player1.name && idx == 6
+      return :prompt
+    end
     next_turn(idx)
+    return idx if !@cups[idx].empty?
+    puts "player1s name is #{@player1.name} and player2s name is #{@player2.name}"
+    puts "current idx is #{idx} and current player is #{current_player_name}"
+    :switch
+    # next_turn(idx)
   end
 
   def next_turn(ending_cup_idx)
   
     # if ending_cup_idx == @current_player_name
-    # if @cups[ending_cup_idx].length > 0 && ending_cup_idx 
-    #   make_move(ending_cup_idx,@current_player_name)
-    # end
+    if @cups[ending_cup_idx].length > 0 && ending_cup_idx 
+      make_move(ending_cup_idx,@current_player_name)
+    end
     # helper method to determine whether #make_move returns :switch, :prompt, or ending_cup_idx
   end
 
@@ -91,7 +101,8 @@ class Board
 
   def one_side_empty?
     a = false
-    @cups[1..4].each do |cup|
+    @cups[1..4].each_with_index do |cup,idx|
+      @cup
       if cup.length != 0
         return false
       end
