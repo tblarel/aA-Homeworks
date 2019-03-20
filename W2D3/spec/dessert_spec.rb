@@ -54,33 +54,46 @@ describe Dessert do
   describe "#mix!" do
     let(:chef) { double("chef") }
     subject(:dessert) { Dessert.new("cookie", 5, chef) }
-    let(:a) {dessert.ingredients}
-    let (:dup) {dessert.dup.mix!}
+    #let(:a) {dessert.mix!}
     it "shuffles the ingredient array" do
       dessert.add_ingredient("butter")
       dessert.add_ingredient("sugar")
       dessert.add_ingredient("vanilla")
       dessert.add_ingredient("baking powder")
-      dessert.add_ingredient("flour")
-      expect(a).not_to eq(dup)
+      dessert.add_ingredient("flour")      
+      expect(dessert.mix!).to eq(dessert.ingredients)
     end
   end
 
   describe "#eat" do
+    let(:chef) { double("chef") }
+    subject(:dessert) { Dessert.new("cookie", 5, chef) }
     it "subtracts an amount from the quantity" do
+      dessert.eat(2)
+      expect(dessert.quantity).to eq(3)
     end
 
     it "raises an error if the amount is greater than the quantity" do
+      expect do 
+        dessert.eat(6)
+      end.to raise_error("not enough left!")
     end
   end
 
   describe "#serve" do
-    it "contains the titleized version of the chef's name" do 
+    let(:chef) { Chef.new("John") }
+    subject(:dessert) { Dessert.new("cookie", 5, chef) }
+    it "contains the titleized version of the chef's name" do
+      expect(dessert.serve).to include(chef.titleize)
     end
   end
 
   describe "#make_more" do
+    subject(:chef) { Chef.new("John") }
+    let(:dessert) { Dessert.new("cookie", 5, chef) }
     it "calls bake on the dessert's chef with the dessert passed in" do 
+      expect(subject).to receive(:bake).with(dessert)
+      dessert.make_more
     end
   end
 end
