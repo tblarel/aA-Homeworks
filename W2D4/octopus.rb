@@ -6,9 +6,7 @@ require 'io/console'
 require 'benchmark'
 
 class SortingDemo
-    
-    array = ['fish', 'fiiish', 'fiiiiish', 'fiiiish', 'fffish', 'ffiiiiisshh', 'fsh', 'fiiiissshhhhhh']
-   
+       
     def self.sluggish_search(array) #slow search, O(n^2) time complexity
         longest = ""
         array.each_with_index do |ele,idx|
