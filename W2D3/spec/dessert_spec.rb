@@ -54,14 +54,14 @@ describe Dessert do
   describe "#mix!" do
     let(:chef) { double("chef") }
     subject(:dessert) { Dessert.new("cookie", 5, chef) }
-    #let(:a) {dessert.mix!}
     it "shuffles the ingredient array" do
       dessert.add_ingredient("butter")
       dessert.add_ingredient("sugar")
       dessert.add_ingredient("vanilla")
       dessert.add_ingredient("baking powder")
-      dessert.add_ingredient("flour")      
-      expect(dessert.mix!).to eq(dessert.ingredients)
+      dessert.add_ingredient("flour")    
+      original_ingredients = dessert.ingredients.dup  
+      expect(original_ingredients).not_to eq(dessert.mix!)
     end
   end
 
