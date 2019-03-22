@@ -55,34 +55,3 @@ johnny_cache.add({a: 1, b: 2, c: 3})
 
 
 johnny_cache.show # => prints [[1, 2, 3, 4], :ring_of_fire, "I walk the line", {:a=>1, :b=>2, :c=>3}]
-
-
-# a = LRUCache.new(4)
-# a.add(1,2)
-#     a.show
-# a.add(3,4)
-#     a.show
-# a.add(4,5)
-#     a.show
-# a.add(5,6)
-#     a.show
-# a.add(6,7)
-#     a.show
-# a.add(7,8)
-#     a.show
-# a.add(11,12)
-#     a.show
-# a.add(13,14)
-#     a.show
-# a.add(14,15)
-#     a.show
-# a.add(15,16)
-#     a.show
-# a.add(17,18)
-#     a.show
-# a.add(14,15)
-#     a.show
-#     a.most_recent
-# a.add(17,18)
-#     a.show
-#     a.most_recent
