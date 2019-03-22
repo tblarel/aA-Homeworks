@@ -1,70 +1,88 @@
- require 'byebug'
 
 class LRUCache
-attr_accessor :data, :maxsize
-def initialize(n)
-    @data = Array.new(n)
-    @maxsize = n
-end
+    # attr_accessor :data
 
-def count
-    @data.count
-    # returns number of elements currently in cache
-end
+  def initialize(capacity)
+    @capacity = capacity
+    @data = {}
+  end
 
-
-# [ 1, 3, 5]
-
-
-def add(el)
-    #debugger
-    index = data.index(el) if data.include?(el)
-    if index
-       p "item already exists at #{index}"
-        data.delete_at(index)
-        data.unshift(el)
-        data[1...index].each_with_index do |el, idx|
-            data[idx] = data[idx+1] if !data[idx+1].nil?
-        end
-        data.unshift(el)
-       return
+  def get(key)
+    val = @data.delete key
+    if val
+      @data[key] = val
+    else
+      -1
     end
-    data.unshift(el)
-    data.pop
-    return self
-    # adds element to cache according to LRU principle
+  end
+  def count
+    p @data.length
+  end
+
+  def show
+    p @data.keys
+  end
+
+  def most_recent
+    p @data[@data.keys.last]
+  end
+
+  def add(key, value = 0) 
+    @data.delete key
+    @data[key] = value
+    @data.delete @data.first.first if @data.size > @capacity 
+  end
 end
 
-def show
-    p data
-    # shows the items in the cache, with the LRU item first
-end
 
-private
-# helper methods go here!
 
-end
+johnny_cache = LRUCache.new(4)
 
-a = LRUCache.new(4)
-a.add(2)
-    p a.data
-a.add(3)
-    p a.data
-a.add(4)
-    p a.data
-a.add(5)
-    p a.data
-a.add(6)
-    p a.data
-a.add(7)
-    p a.data
-a.add(11)
-    p a.data
-a.add(7)
-    p a.data
-a.add(10)
-    p a.data
-a.add(7)
-    p a.data
-a.add(6)
-    p a.data
+johnny_cache.add("I walk the line")
+johnny_cache.add(5)
+
+johnny_cache.count # => returns 2
+
+johnny_cache.add([1,2,3])
+johnny_cache.add(5)
+johnny_cache.add(-5)
+johnny_cache.add({a: 1, b: 2, c: 3})
+johnny_cache.add([1,2,3,4])
+johnny_cache.add("I walk the line")
+johnny_cache.add(:ring_of_fire)
+johnny_cache.add("I walk the line")
+johnny_cache.add({a: 1, b: 2, c: 3})
+
+
+johnny_cache.show # => prints [[1, 2, 3, 4], :ring_of_fire, "I walk the line", {:a=>1, :b=>2, :c=>3}]
+
+
+# a = LRUCache.new(4)
+# a.add(1,2)
+#     a.show
+# a.add(3,4)
+#     a.show
+# a.add(4,5)
+#     a.show
+# a.add(5,6)
+#     a.show
+# a.add(6,7)
+#     a.show
+# a.add(7,8)
+#     a.show
+# a.add(11,12)
+#     a.show
+# a.add(13,14)
+#     a.show
+# a.add(14,15)
+#     a.show
+# a.add(15,16)
+#     a.show
+# a.add(17,18)
+#     a.show
+# a.add(14,15)
+#     a.show
+#     a.most_recent
+# a.add(17,18)
+#     a.show
+#     a.most_recent
