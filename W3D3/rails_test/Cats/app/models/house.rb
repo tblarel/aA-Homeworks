@@ -3,8 +3,8 @@ class House < ApplicationRecord
     
     has_many(
         :people,
-        class_name: 'Person',
-        primary_key: :id 
+        class_name: 'Person'
     )
 
 end
+
