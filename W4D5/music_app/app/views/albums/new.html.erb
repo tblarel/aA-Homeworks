@@ -1,0 +1,44 @@
+<h1>Add A New Album!</h1>
+<br><br>
+<br>
+<div class="form-wrapper">
+    <form action="<%=albums_url%>" method="post">
+        
+        <input type="hidden"
+            name="authenticity_token"
+            value="<%= form_authenticity_token %>">
+        
+        <label>Name 
+            <br><br>
+            <input name="album[name]">
+        </label>
+        
+        <br> <br>
+        
+        <label>Year 
+            <br><br>
+            <input type="number"name="album[yr]">
+        </label>
+        
+        <br><br>
+        
+        <label>Band 
+            <br><br>
+            <select name="album[band_id]">
+                <% Band.all.each do |band|%>
+                <option <%= band.id.to_s == params[:band_id].to_s ? "selected" : "" %> value="<%=band.id%>"> <%= band.name %> </option>
+                <%end%>
+            </select>
+        </label>
+        
+        <br> <br>
+        <label> Recording Type 
+        <br> <br>
+        <input type="radio" name="album[recording_type]" value="0"> Studio
+        <input type="radio" name="album[recording_type]" value="1"> Live
+        </label>
+        <br><br>
+        <input type="submit" value="Add!" class="add">
+    
+    </form>
+</div>

@@ -1,0 +1,63 @@
+<br> <br>
+
+<div class = form-wrapper>
+    <h1><%= @album.name %> </h2>
+    <h3>Release Date : <%= @album.yr %>
+    <h3>Recording Type : <%= @album.recording_type == 0 ? "Studio" : "Live" %>
+    <br>
+
+    <br> <br>
+    <h3> Tracks:
+        <ul class="band-list">
+        <% my_tracks = Track.where("album_id = ?", @album.id)%>
+        <% my_tracks.each do |track|%>
+            <li> 
+                <a class="album-anchor" href = "<%= track_url(track) %>" > 
+                    <%= track.title %> 
+                </a> 
+            </li>
+        <% end %>
+    </ul>
+
+    <br><br>
+
+    <form action="<%= new_album_track_url(@album) %>" method="get">
+            <input
+                type="hidden"
+                name="authenticity_token"
+                value="<%= form_authenticity_token %>">
+            <input type="submit" value="Add a Track!" class="login">
+    </form>
+
+    <br> <br>
+    <form action="<%= band_url(@album.band_id) %>" method="get">
+        <input
+            type="hidden"
+            name="authenticity_token"
+            value="<%= form_authenticity_token %>">
+        <input type="submit" value="Artist Page" 
+            class="login" 
+            style="padding-top:1vw; padding-bottom:1vw">
+    </form>
+
+    <br><br>
+     <form action="<%= edit_album_url(@album) %>" method="get">
+            <input
+                type="hidden"
+                name="authenticity_token"
+                value="<%= form_authenticity_token %>">
+            <input type="submit" 
+                value="Edit Album" 
+                class="login">
+    </form>
+
+    <form action="<%= album_url(@album) %>" method="post">
+            <input type="hidden" name="_method" value="delete">
+            <input
+                type="hidden"
+                name="authenticity_token"
+                value="<%= form_authenticity_token %>">
+            <input type="submit" 
+                value="Delete Album" 
+                class="logout">
+    </form>

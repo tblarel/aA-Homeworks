@@ -1,0 +1,143 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+@font-face {
+font-family: 'Roboto';
+src: url('Roboto-Bold-webfont.woff') format('truetype');
+src: url('Roboto-Light-webfont.woff') format('truetype');
+src: url('Roboto-Regular-webfont.woff') format('truetype');
+}
+html{
+    height: 100%
+}
+
+h1{
+    font-family: Roboto;
+    font-size: 6vw;
+    text-align: center;
+}
+
+h3{
+    font-family: roboto;
+    font-size: 2.5vw;
+}
+input,label{
+    font-family: roboto;
+    font-size:2vw;
+}
+
+input{
+    border-radius:25px;
+    padding:1vw;
+    border:none;
+}
+
+body{  
+background: -moz-linear-gradient(top, #f6e6b4 0%, #ed9017 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top, #f6e6b4 0%,#ed9017 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom, #f6e6b4 0%,#ed9017 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+}
+
+.form-wrapper{
+text-align: center;
+}
+
+label{
+font-family:Roboto;
+font-size:2vw;
+font-weight:500;
+}
+
+.login{
+background-color: lightgreen;
+border-radius: 25px;
+border: none;
+font-family: Roboto;
+padding:1vw;
+padding-left:2vw;
+padding-right:2vw;
+margin:1vw;
+font-size: 2vw;
+font-weight: 600;
+}
+
+.add{
+background-color: lightgreen;
+border-radius: 25px;
+border: none;
+font-family: Roboto;
+padding-left:4vw;
+padding-right:4vw;
+margin:1vw;
+font-size: 2vw;
+font-weight: 600;
+}
+
+.signup{
+background-color: lightblue;
+border-radius: 25px;
+border: none;
+font-family: Roboto;
+padding:1vw;
+padding-left:2vw;
+padding-right:2vw;
+margin:1vw;
+font-size: 2vw;
+font-weight: 600;
+}
+
+.logout{
+background-color: red;
+border-radius: 25px;
+border: none;
+font-family: Roboto;
+padding:1vw;
+margin:1vw;
+font-size: 2vw;
+font-weight: 600;
+display: flex-inline;
+}
+
+.band-anchor {
+font-family: Roboto;
+font-size:4vw;
+color:black;
+font-weight:1000;
+}
+
+.album-anchor {
+font-family: Roboto;
+font-size:2vw;
+color:black;
+font-weight:1000;
+
+}
+.band-list{
+text-align: center;
+list-style-type: none;
+padding:0;
+}
+
+.band-item{
+font-family: Roboto;
+font-size:4vw;
+margin-bottom: 2vw;
+}
+#top-login{
+margin-top: 4vw;
+display:flex;flex-direction: row;
+justify-content: flex-end;
+}

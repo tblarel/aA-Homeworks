@@ -1,0 +1,21 @@
+
+<h1>Welcome to the Music App!</h1>
+<br><br>
+<br>
+<form action="<%=sessions_url%>" method="post" style="text-align: center">
+    <h3>Sign In: </h3>
+    <input type="hidden"
+        name="authenticity_token"
+        value="<%= form_authenticity_token %>">
+    <label>Email 
+        <br><br>
+        <input name="user[email]">
+    </label>
+    <br><br>
+    <label>Password (Must be 6 characters or longer)
+        <br> <br>
+        <input type="password" name="user[password]">
+    </label>
+    <br><br>
+    <input type="submit" value="Sign in!" class="login">
+</form>

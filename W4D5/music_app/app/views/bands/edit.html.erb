@@ -1,0 +1,13 @@
+<div style = "text-align:center">
+
+    <form action="<%= band_url(@band.id) %>" method="post">
+        <input
+            type="hidden"
+            name="authenticity_token"
+            value="<%= form_authenticity_token %>">
+        <input type="hidden" name="_method" value="patch">
+        <input name="band[name]" value="<%=@band.name%>">
+        <input type="submit" value="Save" class="login">
+    </form>
+
+</div>

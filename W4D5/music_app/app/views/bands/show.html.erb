@@ -1,0 +1,46 @@
+<div style = "text-align:center">
+
+    <form action="<%= bands_url %>" method="get">
+          <input
+            type="hidden"
+            name="authenticity_token"
+            value="<%= form_authenticity_token %>">
+          <input type="submit" value="Back To All Bands" class="login">
+    </form>
+    
+    <h1> <%=@band.name%> </h2>
+
+    <form action="<%= edit_band_url(@band) %>" method="get">
+            <input
+                type="hidden"
+                name="authenticity_token"
+                value="<%= form_authenticity_token %>">
+            <input type="submit" value="Edit Band" class="login">
+    </form>
+
+    <form action="<%= band_url(@band) %>" method="post">
+            <input type="hidden" name="_method" value="delete">
+            <input
+                type="hidden"
+                name="authenticity_token"
+                value="<%= form_authenticity_token %>">
+            <input type="submit" value="Delete Band" class="logout">
+    </form>
+
+    <ul class="band-list">
+        <h2> Albums: </h2>
+        <% my_albums = Album.where("band_id = ?", @band.id)%>
+        <% my_albums.each do |album|%>
+            <li> <a class="album-anchor" href = "<%= album_url(album) %>"> <%= album.name %> </a> </li>
+        <% end %>
+    </ul>
+
+    <form action="<%= new_band_album_url(@band) %>" method="get">
+            <input
+                type="hidden"
+                name="authenticity_token"
+                value="<%= form_authenticity_token %>">
+            <input type="submit" value="Add an Album!" class="login">
+    </form>
+
+</div>
